@@ -1,0 +1,98 @@
+﻿@model AlFahimCMS.ViewModels.SearhItemViewModel
+
+    @{
+        ViewBag.Title = "CreateOrder";
+        Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    }
+
+   
+
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Create Order
+        </h1>
+
+    </div>
+
+@if (ViewBag.Process == "SaveOk")
+{
+<div class="alert alert-success">
+    <strong>Order Created!</strong> Successfully.
+</div>
+}
+
+    <form role="form" method="post" action="CreateOrder">
+
+
+        <div class="form-group">
+            <label>Item Number </label>
+            <input class="form-control" placeholder="Item Number">
+        </div>
+        <div class="form-group">
+            <label>Item Name </label>
+            <input class="form-control" placeholder="Item Name">
+        </div>
+
+
+
+        <button type="submit" class="btn btn-success ">Search</button>
+        <br />
+    </form>
+@if (ViewBag.Process == "true")
+{
+
+        <div class="col-lg-6">
+        <h2>List of Item(s)</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Item Number</th>
+                        <th>Item Name</th>
+                        <th>Stock Quantity</th>
+                        <th>Order Qty</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @using (Html.BeginForm("SaveOrder", "order", FormMethod.Post))
+                    {
+                    for(int i=0; i< Model.lSearchItem.Count;i++  )
+                    
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.lSearchItem[i].ItemNumber,null)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.lSearchItem[i].ItemName,null)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.lSearchItem[i].Stock)
+                            </td>
+                            <td>
+                                @Html.TextBox("Qty")
+                            </td>
+                           
+                        </tr>
+                        }
+                       <tr>
+                           <td><button type="submit" class="btn btn-danger ">Submit Order</button>
+                            </td>
+                       </tr>
+                        
+                    }
+                   
+                </tbody>
+            </table>
+            
+
+        </div>
+    </div>
+
+    
+
+}
+
+
+
