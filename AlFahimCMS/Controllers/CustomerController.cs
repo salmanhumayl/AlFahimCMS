@@ -12,7 +12,16 @@ namespace AlFahimCMS.Controllers
         // GET: /Customer/
         public ActionResult List()
         {
+            string str = "sdsadasdsad";
+            str.IntegerExtension();   //Extention method
             return View();
         }
 	}
+    public static class ExtMetClass
+    {
+        public static int IntegerExtension(this string str)
+        {
+            return Int32.Parse(str);
+        }
+    }
 }
